@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IFlightService, FlightService>();
 var app = builder.Build();
 
 

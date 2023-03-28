@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using XMLApp.Model;
 using XMLApp.Services;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace XMLApp.Controllers
 {
@@ -14,7 +14,7 @@ namespace XMLApp.Controllers
 
         public FlightController(IFlightService flightService)
         {
-            this._flightService = flightService;
+            _flightService = flightService;
         }
 
         
