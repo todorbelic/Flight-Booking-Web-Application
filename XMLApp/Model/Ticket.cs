@@ -1,9 +1,10 @@
-﻿namespace XMLApp.Model
+﻿using XMLApp.Attributes;
+
+namespace XMLApp.Model
 {
-    public class Ticket
+    [BsonCollection("tickets")]
+    public class Ticket : Document
     {
-        public int Id { get; set; }
-        public Flight? Flight { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
     }
