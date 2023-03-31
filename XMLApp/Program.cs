@@ -1,8 +1,10 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
-using MongoDB.Driver;
+using XMLApp.Mapper;
+using XMLApp.Repository;
 using XMLApp.Services;
+using XMLApp.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +16,20 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure dependency injection
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+//Configure MongoDb settings
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true, true).Build();
+builder.Services.AddSingleton<IMongoDbSettings>(serviceProvider =>
+       serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+builder.Services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
+
+// Configure auto mapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 var app = builder.Build();
 
 

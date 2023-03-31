@@ -1,16 +1,16 @@
-﻿using XMLApp.Model;
+﻿using XMLApp.DTO;
+using XMLApp.Model;
 
 namespace XMLApp.Services
 {
     public interface IFlightService
     {
         public List<Flight> Get();
-        public Flight GetById(int id);
+        public Task<Flight> GetById(string id);
 
-        public Flight Create(Flight flight);
+        public Task<Flight> Create(NewFlightDTO flight);
 
-        public void Update(int id, Flight updatedFlight);
-        public void Delete(int id);
-        public void Delete(Flight flightToDelete);
+        public Task Update(string id, Flight updatedFlight);
+        public Task Delete(string id);
     }
 }

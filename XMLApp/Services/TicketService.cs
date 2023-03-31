@@ -1,39 +1,43 @@
-﻿using MongoDB.Driver;
+﻿using AutoMapper;
+using MongoDB.Driver;
+using XMLApp.DTO;
 using XMLApp.Model;
+using XMLApp.Repository;
 
 namespace XMLApp.Services
 {
     public class TicketService: ITicketService
     {
-        private readonly IMongoCollection<Ticket> _tickets;
-        public TicketService()
+        private readonly IRepository<Ticket> _ticketRepository;
+
+        public TicketService(IRepository<Flight> flightRepository, IRepository<Ticket> ticketRepository, IMapper mapper)
         {
-
-            var settings = MongoClientSettings.FromConnectionString("mongodb://xws:gKz8dx3HFljTqsee@ac-bxlowrt-shard-00-00.jzm0jin.mongodb.net:27017,ac-bxlowrt-shard-00-01.jzm0jin.mongodb.net:27017,ac-bxlowrt-shard-00-02.jzm0jin.mongodb.net:27017/?ssl=true&replicaSet=atlas-8liqmh-shard-0&authSource=admin&retryWrites=true&w=majority");
-            var client = new MongoClient(settings);
-            var database = client.GetDatabase("TicketDB");
-
-            _tickets= database.GetCollection<Ticket>("Tickets");
-            Ticket ticket = new Ticket { Price = 3213 };
-
-            // Inserting the first document will create collection named "Games"
-            _tickets.InsertOne(ticket);
+            _ticketRepository = ticketRepository;
         }
 
-        public List<Ticket> Get() => _tickets.Find(ticket => true).ToList();
-
-        public Ticket Get(int id) => _tickets.Find(ticket => ticket.Id == id).FirstOrDefault();
-
-        public Ticket Create(Ticket ticket)
+        public async Task<Ticket> Create(Ticket ticket)
         {
-            _tickets.InsertOne(ticket);
-            return ticket;
+            return await _ticketRepository.InsertOneAsync(ticket);
         }
 
-        public void Update(int id, Ticket updatedTicket) => _tickets.ReplaceOne(game => game.Id == id, updatedTicket);
+        public async Task Delete(string id)
+        {
+            await _ticketRepository.DeleteByIdAsync(id);
+        }
 
-        public void Delete(Ticket ticketToDelete) => _tickets.DeleteOne(game => game.Id == ticketToDelete.Id);
+        public List<Ticket> Get()
+        {
+            return _ticketRepository.AsQueryable().ToList();
+        }
 
-        public void Delete(int id) => _tickets.DeleteOne(ticket => ticket.Id == id);
+        public async Task<Ticket> GetById(string id)
+        {
+            return await _ticketRepository.FindByIdAsync(id);
+        }
+
+        public async Task Update(string id, Ticket updatedTicket)
+        {
+            await _ticketRepository.ReplaceOneAsync(updatedTicket);
+        }
     }
 }

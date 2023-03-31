@@ -1,41 +1,53 @@
-﻿using MongoDB.Driver;
+﻿using AutoMapper;
+using MongoDB.Driver;
+using XMLApp.DTO;
 using XMLApp.Model;
+using XMLApp.Repository;
 
 namespace XMLApp.Services
 {
     public class FlightService : IFlightService
-
     {
+        private readonly IRepository<Flight> _flightRepository;
+        private readonly IRepository<Ticket> _ticketRepository;
+        private readonly IMapper _mapper;
 
-        private readonly IMongoCollection<Flight> _flights;
-
-        public FlightService()
+        public FlightService(IRepository<Flight> flightRepository, IRepository<Ticket> ticketRepository, IMapper mapper)
         {
-            var settings = MongoClientSettings.FromConnectionString("mongodb://xws:gKz8dx3HFljTqsee@ac-bxlowrt-shard-00-00.jzm0jin.mongodb.net:27017,ac-bxlowrt-shard-00-01.jzm0jin.mongodb.net:27017,ac-bxlowrt-shard-00-02.jzm0jin.mongodb.net:27017/?ssl=true&replicaSet=atlas-8liqmh-shard-0&authSource=admin&retryWrites=true&w=majority");
-            var client = new MongoClient(settings);
-            var database = client.GetDatabase("FlightDB");
-
-            _flights = database.GetCollection<Flight>("Flights");
-            //Ticket ticket = new Ticket { Price = 3213 };
-
-            // Inserting the first document will create collection named "Games"
-            //_tickets.InsertOne(ticket);
+            _flightRepository = flightRepository;
+            _ticketRepository = ticketRepository;
+            _mapper = mapper;
         }
-        public Flight Create(Flight flight)
+
+        public async Task<Flight> Create(NewFlightDTO flightDTO)
         {
-            _flights.InsertOne(flight);
+            var ticket = _mapper.Map<Ticket>(flightDTO);
+            Ticket insertedTicket = await _ticketRepository.InsertOneAsync(ticket);
+            var flight = _mapper.Map<Flight>(flightDTO);
+            flight.Ticket = insertedTicket;
+            flight.TicketId = insertedTicket.Id.ToString();
+            await _flightRepository.InsertOneAsync(flight);
             return flight;
         }
 
-        public void Delete(int id) => _flights.DeleteOne(flight => flight.Id == id);
-    
-        public void Delete(Flight flightToDelete) => _flights.DeleteOne(flight => flight.Id == flightToDelete.Id);
+        public async Task Delete(string id)
+        {
+            await _flightRepository.DeleteByIdAsync(id);
+        }
 
-        public List<Flight> Get() => _flights.Find(flight => true).ToList();
+        public List<Flight> Get()
+        {
+            return _flightRepository.AsQueryable().ToList();
+        }
 
-        public Flight GetById(int id) => _flights.Find(flight => flight.Id == id).FirstOrDefault();
+        public async Task<Flight> GetById(string id)
+        {
+            return await _flightRepository.FindByIdAsync(id);
+        }
 
-
-        public void Update(int id, Flight updatedFlight) => _flights.ReplaceOne(flight => flight.Id == id, updatedFlight);
+        public async Task Update(string id, Flight updatedFlight)
+        {
+            await _flightRepository.ReplaceOneAsync(updatedFlight);
+        }
     }
 }

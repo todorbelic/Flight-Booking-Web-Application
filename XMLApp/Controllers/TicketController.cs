@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using XMLApp.Model;
 using XMLApp.Services;
 
@@ -9,7 +8,7 @@ namespace XMLApp.Controllers
     [ApiController]
     public class TicketController : ControllerBase
     {
-        
+
         // GET: TicketController
         private readonly ITicketService _ticketService;
 
@@ -18,29 +17,33 @@ namespace XMLApp.Controllers
             _ticketService = ticketService;
         }
 
-        // GET: api/Donor
+
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult<Flight> GetAll()
         {
             return Ok(_ticketService.Get());
         }
 
-        // GET api/Donor/2
         [HttpGet("{id}")]
-        public ActionResult GetById(int id)
+        public async Task<ActionResult> GetById(string id)
         {
-            var ticket = _ticketService.Get(id);
+            var ticket = await _ticketService.GetById(id);
             if (ticket == null)
             {
                 return NotFound();
             }
-
             return Ok(ticket);
         }
 
-        // PUT api/Donor/2
+        [HttpPost]
+        public async Task<ActionResult> Create(Ticket ticket)
+        {
+            await _ticketService.Create(ticket);
+            return Ok();
+        }
+
         [HttpPut("{id}")]
-        public ActionResult Update(Ticket ticket)
+        public async Task<ActionResult> Update(Ticket ticket)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +52,7 @@ namespace XMLApp.Controllers
 
             try
             {
-                _ticketService.Update(ticket.Id,ticket);
+                await _ticketService.Update(ticket.Id.ToString(), ticket);
             }
             catch
             {
@@ -57,6 +60,19 @@ namespace XMLApp.Controllers
             }
 
             return Ok(ticket);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var ticket = _ticketService.GetById(id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            await _ticketService.Delete(id);
+            return Ok();
         }
 
     }

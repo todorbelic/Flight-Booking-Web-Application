@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using XMLApp.DTO;
 using XMLApp.Model;
 using XMLApp.Services;
 
@@ -25,9 +25,9 @@ namespace XMLApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetById(int id)
+        public async Task<ActionResult> GetById(string id)
         {
-            var flight = _flightService.GetById(id);
+            var flight = await _flightService.GetById(id);
             if(flight == null)
             {
                 return NotFound();
@@ -37,14 +37,15 @@ namespace XMLApp.Controllers
 
         // POST api/<FlightController>
         [HttpPost]
-        public ActionResult Post(Flight flight)
+        public async Task<ActionResult> Post(NewFlightDTO flight)
         {
-            return Ok(_flightService.Create(flight));
+            await _flightService.Create(flight);
+            return Ok();
         }
 
         // PUT api/<FlightController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(Flight flight)
+        public async Task<ActionResult> Update(Flight flight)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +54,7 @@ namespace XMLApp.Controllers
 
             try
             {
-                _flightService.Update(flight.Id, flight);
+                await _flightService.Update(flight.Id.ToString(), flight);
             } catch
             {
                 return BadRequest();
@@ -64,7 +65,7 @@ namespace XMLApp.Controllers
 
         // DELETE api/<FlightController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
             var flight = _flightService.GetById(id);
             if(flight == null)
@@ -72,7 +73,7 @@ namespace XMLApp.Controllers
                 return NotFound();
             }
 
-            _flightService.Delete(id);
+            await _flightService.Delete(id);
             return Ok();
         }
     }

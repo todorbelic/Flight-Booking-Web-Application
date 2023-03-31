@@ -1,15 +1,14 @@
-﻿using XMLApp.Attributes;
+﻿using XMLApp.Model;
 
-namespace XMLApp.Model
+namespace XMLApp.DTO
 {
-    [BsonCollection("flights")]
-    public class Flight : Document
+    public class NewFlightDTO
     {
         public GeoLocation? TakeOffLocation { get; set; }
         public GeoLocation? LandingLocation { get; set; }
         public DateTime? TakeOffDate { get; set; }
         public DateTime? LandingDate { get; set; }
-        public Ticket? Ticket { get; set; }
-        public string TicketId { get; set; }
+        public int Quantity { get; set; }
+        public double Price { get; set; }
     }
 }
