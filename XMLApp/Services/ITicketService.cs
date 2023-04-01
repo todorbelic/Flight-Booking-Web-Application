@@ -5,11 +5,12 @@ namespace XMLApp.Services
     public interface ITicketService
     {
         public List<Ticket> Get();
-        public Ticket Get(int id);
-        public Ticket Create(Ticket ticket);
-        public void Update(int id, Ticket updatedTicket);
-        public void Delete(Ticket ticketToDelete);
-        public void Delete(int id);
+        public Task<Ticket> GetById(string id);
+
+        public Task<Ticket> Create(Ticket ticket);
+
+        public Task Update(string id, Ticket updatedTicket);
+        public Task Delete(string id);
 
 
     }
