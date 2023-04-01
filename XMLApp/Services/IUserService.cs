@@ -11,5 +11,9 @@ namespace XMLApp.Services
         Task RegisterUser(RegisterDTO dto);
 
         Task<bool> CheckIfEmailExistsAsync(string email);
+
+        Task<bool> EmailMatchesPasswordAsync(LogInDTO dto);
+
+        Task<string> LogInUserAsync(LogInDTO dto);
     }
 }

@@ -9,6 +9,8 @@ using XMLApp.NewFolder;
 using XMLApp.Repository;
 using XMLApp.Services;
 using XMLApp.Settings;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,15 +22,58 @@ builder.Services.AddControllers()
                options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
            });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    configureOptions: options =>
+    {
+        options.IncludeErrorDetails = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
+builder.Services.AddSwaggerGen(options => 
+{ 
     options.MapType<DateOnly>(() => new OpenApiSchema
     {
         Type = "string",
         Format = "date",
         Example = new OpenApiString("2022-01-01")
-    }));
+    });
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+         In = ParameterLocation.Header,
+         Description = "Please enter token",
+         Name = "Authorization",
+         Type = SecuritySchemeType.Http,
+         BearerFormat = "JWT",
+         Scheme = "Bearer"
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+         {
+             new OpenApiSecurityScheme
+             {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+             },
+              new string[]{}
+         }
+    });
+
+});
+    
 
 // Configure dependency injection
 builder.Services.AddScoped<ITicketService, TicketService>();

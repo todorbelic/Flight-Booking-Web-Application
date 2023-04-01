@@ -11,6 +11,6 @@ namespace XMLApp.Model
         public string Email { get; set; }
         public string Password { get; set; }
         public Address Address { get; set; }
-        public Roles Role { get; set; }
+        public string Role { get; set; }
     }
 }

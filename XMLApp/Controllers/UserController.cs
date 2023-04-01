@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using XMLApp.DTO;
 using XMLApp.Model;
 using XMLApp.Services;
@@ -17,11 +18,6 @@ namespace XMLApp.Controllers
             _userService = userService;
         }
 
-        /// <summary>
-        /// Authorized for: ADMIN, LIBRARIAN
-        /// </summary>
-        /// <returns> Confirmation for registration</returns>
-        /// <response code="200">Registration successful</response>
         [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<ActionResult> Register(RegisterDTO dto)
@@ -39,6 +35,27 @@ namespace XMLApp.Controllers
             catch (Exception ex)
             {
                 return BadRequest("Unsuccessful registration.");
+            }
+
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public async Task<ActionResult> LogIn(LogInDTO dto)
+        {
+            try
+            {
+                if (!await _userService.EmailMatchesPasswordAsync(dto))
+                {
+                    return BadRequest("Log in unsuccessful!");
+                }
+
+                return Ok(await _userService.LogInUserAsync(dto));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Log in unsuccessful!");
             }
 
         }
