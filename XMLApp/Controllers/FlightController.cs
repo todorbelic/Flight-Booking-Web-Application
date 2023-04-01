@@ -3,7 +3,6 @@ using XMLApp.DTO;
 using XMLApp.Model;
 using XMLApp.Services;
 
-
 namespace XMLApp.Controllers
 {
     [Route("api/[controller]")]
@@ -33,6 +32,13 @@ namespace XMLApp.Controllers
                 return NotFound();
             }
             return Ok(flight);
+        }
+
+        [HttpPost("getFiltered")]
+        public ActionResult GetFiltered([FromBody] FlightFilterDTO filterDTO)
+        {
+            var flights = _flightService.GetByFilter(filterDTO);
+            return Ok(flights);
         }
 
         // POST api/<FlightController>
