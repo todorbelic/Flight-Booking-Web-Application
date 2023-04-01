@@ -10,6 +10,8 @@ namespace XMLApp.Mapper
         {
             CreateMap<Flight, NewFlightDTO>().ReverseMap();
             CreateMap<Ticket, NewFlightDTO>().ReverseMap();
+            CreateMap<RegisterDTO, User>();
+            CreateMap<User, RegisterDTO>();
         }
     }
 }

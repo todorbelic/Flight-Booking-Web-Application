@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using XMLApp.DTOs;
+using XMLApp.DTO;
 
 namespace XMLApp.Validators
 {

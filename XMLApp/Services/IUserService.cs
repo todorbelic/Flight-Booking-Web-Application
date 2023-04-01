@@ -1,11 +1,12 @@
-﻿using XMLApp.DTOs;
+﻿using XMLApp.DTO;
 using XMLApp.Model;
 
 namespace XMLApp.Services
 {
     public interface IUserService
     {
-        Task<User> GetById(int id);
+        public List<User> Get();
+        public Task<User> GetById(string id);
 
         Task RegisterUser(RegisterDTO dto);
 

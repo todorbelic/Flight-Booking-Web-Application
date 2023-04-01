@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using XMLApp.DTOs;
+using XMLApp.DTO;
 using XMLApp.Model;
 using XMLApp.Services;
 

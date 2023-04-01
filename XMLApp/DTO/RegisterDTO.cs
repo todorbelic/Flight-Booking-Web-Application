@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using XMLApp.Model;
 
-namespace XMLApp.DTOs
+namespace XMLApp.DTO
 {
     public class RegisterDTO
     {
