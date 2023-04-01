@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'XML-front'`, () => {
+  it(`should have as title 'xml-front-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('XML-front');
+    expect(app.title).toEqual('xml-front-app');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('XML-front app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('xml-front-app app is running!');
   });
 });
