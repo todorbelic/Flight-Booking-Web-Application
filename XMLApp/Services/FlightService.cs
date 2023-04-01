@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
 using XMLApp.DTO;
+using XMLApp.Filters;
 using XMLApp.Model;
 using XMLApp.Repository;
 
@@ -43,6 +44,19 @@ namespace XMLApp.Services
         public async Task<Flight> GetById(string id)
         {
             return await _flightRepository.FindByIdAsync(id);
+        }
+
+        public List<FlightFilterResultDTO> GetByFilter(FlightFilterDTO filter)
+        {
+            IEnumerable<Flight> flightsFiltered = _flightRepository.FilterBy(filter.GetFilterExpression());
+            var flightsQueryable = flightsFiltered.AsQueryable();
+            var ticketsQueryable = _ticketRepository.AsQueryable();
+            var query = from flight in flightsQueryable
+                        join ticket in ticketsQueryable on flight.TicketId equals ticket.Id.ToString()
+                        where ticket.Quantity >= filter.PassengersCount
+                        select new FlightFilterResultDTO(flight, ticket, filter.PassengersCount);
+            
+            return query.ToList();
         }
 
         public async Task Update(string id, Flight updatedFlight)

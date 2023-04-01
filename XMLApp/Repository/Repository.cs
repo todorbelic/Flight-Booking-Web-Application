@@ -14,16 +14,17 @@ namespace XMLApp.Repository
 
         public Repository(IMongoDbSettings settings)
         {
-            var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+            string connectionString = Environment.GetEnvironmentVariable("MongoConnectionString") ?? settings.ConnectionString;
+            var database = new MongoClient(connectionString).GetDatabase(settings.DatabaseName);
             _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
         }
 
         private protected string GetCollectionName(Type documentType)
         {
             return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
-                    typeof(BsonCollectionAttribute),
-                    true)
-                   .FirstOrDefault())?.CollectionName;
+            typeof(BsonCollectionAttribute),
+            true)
+            .FirstOrDefault())?.CollectionName;
         }
 
         public virtual IQueryable<TDocument> AsQueryable()
@@ -60,7 +61,6 @@ namespace XMLApp.Repository
             var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
             return await _collection.Find(filter).SingleOrDefaultAsync();
         }
-
         public virtual TDocument InsertOne(TDocument document)
         {
             _collection.InsertOne(document);
