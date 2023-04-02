@@ -1,0 +1,25 @@
+.registration-mat-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.registration-mat-card {
+    display: flex;
+    align-self: center;
+    width: max-content;
+    border-radius: 5px;
+    margin:auto;
+    
+}
+
+.registration-mat-card-buttons{
+display: flex;
+justify-content: center;
+}
+
+.registration-page{
+    height: 100vh;
+    display: flex;
+    align-content: center;
+}
