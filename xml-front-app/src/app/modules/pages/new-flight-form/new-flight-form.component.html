@@ -1,0 +1,82 @@
+
+<div class = "adding-flight-page">
+    <mat-card class = "adding-flight-mat-card">
+        <mat-card-content class = "adding-flight-mat-card-content">
+            <div class="adding-flight-geolocation">
+            <!-- Takeoff latitude-->
+            <mat-form-field>
+                <mat-label>Take off latitude</mat-label>
+                <input type="number" matInput min="0"  required [(ngModel)]="takeOffLatitude" />
+            </mat-form-field>
+            <!-- Takeoff longitude-->
+            <mat-form-field>
+                <mat-label>Take off longitude</mat-label>
+                <input type="number" matInput  min="0" required [(ngModel)]="takeOffLongitude"/>
+            </mat-form-field>
+            </div>
+            <!-- Takeoff city-->
+            <mat-form-field>
+                <mat-label>Take off city</mat-label>
+                <input type="text" matInput  required [(ngModel)]="takeOffLocation.city"/>
+            </mat-form-field>
+            <!-- Takeoff country-->
+            <mat-form-field>
+                <mat-label>Take off country</mat-label>
+                <input type="text" matInput  required [(ngModel)]="takeOffLocation.country"/>
+            </mat-form-field>
+            <div class="adding-flight-geolocation">
+            <!-- Landing latitude-->
+            <mat-form-field>
+                <mat-label>Landing latitude</mat-label>
+                <input type="number" matInput [(ngModel)]="landingLatitude" min="0" required/>
+            </mat-form-field>
+            <!-- Landing longitude-->
+            <mat-form-field>
+                <mat-label>Landing longitude</mat-label>
+                <input type="number" matInput [(ngModel)]="landingLongitude" min="0" required/>
+            </mat-form-field>
+            </div>
+            <!-- Landing city-->
+            <mat-form-field>
+                <mat-label>Landing city</mat-label>
+                <input type="text" matInput [(ngModel)]="landingLocation.city" required/>
+            </mat-form-field>
+            <!-- Landing country-->
+            <mat-form-field>
+                <mat-label>Landing country</mat-label>
+                <input type="text" matInput [(ngModel)]="landingLocation.country" required />
+            </mat-form-field>
+
+            <!-- Takeoff date-->
+            <mat-form-field>
+                <mat-label>Take off date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="takeOffDate" >
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+              
+            <!-- Landing date-->
+            <mat-form-field>
+                <mat-label>Landing date</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="landingDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <!--Quantity-->
+            <mat-form-field>
+                <mat-label>Quantity</mat-label>
+                <input type="number" matInput min="0" required [(ngModel)]="quantity"/>
+            </mat-form-field>
+            <!-- Price-->
+            <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input type="number" min="100" required matInput [(ngModel)]="price" />
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions class="adding-flight-mat-card-buttons">
+            <button mat-raised-button (click)="addFlight()">Add</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
