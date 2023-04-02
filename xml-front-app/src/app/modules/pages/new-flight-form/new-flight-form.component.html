@@ -2,6 +2,7 @@
 <div class = "adding-flight-page">
     <mat-card class = "adding-flight-mat-card">
         <mat-card-content class = "adding-flight-mat-card-content">
+            <div class="adding-flight-geolocation">
             <!-- Takeoff latitude-->
             <mat-form-field>
                 <mat-label>Take off latitude</mat-label>
@@ -12,6 +13,7 @@
                 <mat-label>Take off longitude</mat-label>
                 <input type="number" matInput  min="0" required [(ngModel)]="takeOffLongitude"/>
             </mat-form-field>
+            </div>
             <!-- Takeoff city-->
             <mat-form-field>
                 <mat-label>Take off city</mat-label>
@@ -22,7 +24,7 @@
                 <mat-label>Take off country</mat-label>
                 <input type="text" matInput  required [(ngModel)]="takeOffLocation.country"/>
             </mat-form-field>
-
+            <div class="adding-flight-geolocation">
             <!-- Landing latitude-->
             <mat-form-field>
                 <mat-label>Landing latitude</mat-label>
@@ -33,6 +35,7 @@
                 <mat-label>Landing longitude</mat-label>
                 <input type="number" matInput [(ngModel)]="landingLongitude" min="0" required/>
             </mat-form-field>
+            </div>
             <!-- Landing city-->
             <mat-form-field>
                 <mat-label>Landing city</mat-label>
