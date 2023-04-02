@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
 using XMLApp.DTO;
-using XMLApp.Model;
 using XMLApp.Services;
 
 namespace XMLApp.Controllers
