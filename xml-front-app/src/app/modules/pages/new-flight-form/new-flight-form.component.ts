@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GeoLocation } from 'src/app/model/geo-location';
-import { NewFlightDTO } from 'src/app/model/new-flight-dto';
-import { NewFlightService } from 'src/app/services/new-flight.service';
+import { GeoLocation } from 'app/model/geo-location';
+import { NewFlightDTO } from 'app/model/new-flight-dto';
+import { NewFlightService } from 'app/services/new-flight.service';
 
 @Component({
   selector: 'app-new-flight-form',
