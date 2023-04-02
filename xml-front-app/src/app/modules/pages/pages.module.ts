@@ -5,8 +5,15 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LandingComponent } from './landing/landing.component';
 import { StartToolbarComponent } from './start-toolbar/start-toolbar.component';
 import { FlightFormComponent } from './flight-form/flight-form.component'; 
-import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from 'app/material/material.module';
+import { MatToolbar } from '@angular/material/toolbar';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '/', component: LandingComponent },
+
+];
 
 
 @NgModule({
@@ -20,7 +27,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(routes),
+
+    
     
   ]
 })
