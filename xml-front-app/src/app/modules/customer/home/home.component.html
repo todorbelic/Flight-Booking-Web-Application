@@ -1,0 +1,64 @@
+
+<body style="padding:0">
+    <div class="flex-row" style="margin-top:5%">
+      <div class="flex-col" style="background-color:#504c4c; margin-left:5%; height:150%">
+        <div class="flex-row">
+          <mat-form-field style="align-self: center;">
+            <input matInput placeholder = "Takeoff Contry"   [(ngModel)]="takeoffCountry">
+         </mat-form-field>
+      
+         <mat-form-field style="align-self: center;">
+          <input matInput placeholder = "Takeoff  City"  [(ngModel)]="takeoffCity">
+         </mat-form-field>
+        </div>
+    
+        <div class="flex-row">
+          <mat-form-field style="align-self: center;">
+            <input matInput placeholder = "Landing Country"  [(ngModel)]="landingCountry">
+         </mat-form-field>
+      
+         <mat-form-field style="align-self: center;">
+          <input matInput placeholder = "Landing City"  [(ngModel)]="landingCity">
+         </mat-form-field>
+        </div>
+    
+        <mat-form-field style="align-self: center;">
+          <input matInput placeholder = "Number of passengers"  [(ngModel)]="ticketNum">
+         </mat-form-field>
+    
+        <mat-form-field style="align-self: center;">
+          <input matInput [matDatepicker] = "picker" placeholder = "Choose a date"  [(ngModel)]="date">
+          <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+       </mat-form-field>
+    
+       <button mat-raised-button color="accent" style="background-color: white; align-self: center;">Find</button>
+      </div>
+         <div style="margin-top:5%; width:60%; margin-left:5%">
+            <table mat-table [dataSource]="dataSource"  matSort #empTbSort="matSort" class="fl-table" style="color:white">
+                <ng-container matColumnDef="takeoffLoc" >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-center" > Takeoff Location </th>
+                    <td mat-cell *matCellDef="let flight" class="clickable cell-center" >{{flight.takeoffCity}}</td>
+                </ng-container>
+                <ng-container matColumnDef="landingLoc">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-center"> Landing Location </th>
+                    <td mat-cell *matCellDef="let flight" class="cell-center">{{flight.landingCity}}</td>
+                </ng-container>
+                <ng-container matColumnDef="takeoffTime">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-center"> Takeoff Time </th>
+                  <td mat-cell *matCellDef="let flight" class="cell-center">{{flight.takeoffTime}}</td>
+               </ng-container>
+               <ng-container matColumnDef="landingTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-center"> Landing Time </th>
+                <td mat-cell *matCellDef="let flight" class="cell-center">{{flight.landingTime}}</td>
+              </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickTicket(row)"></tr>
+            </table>
+          </div>
+    
+          <button mat-raised-button color="accent" style="background-color: white; align-self: center;" (click)="test()">TEST</button>
+    
+    </div>
+    </body>
+    

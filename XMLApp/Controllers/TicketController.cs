@@ -45,7 +45,7 @@ namespace XMLApp.Controllers
         }
 
         [Authorize]
-        [HttpPost("puchaseTicket")]
+        [HttpPost("purchaseTicket")]
         public async Task<ActionResult> PurchaseTicket(TicketPurchaseDTO ticketPurchase)
         {
             string? id = User.FindFirst(ClaimTypes.PrimarySid)?.Value;

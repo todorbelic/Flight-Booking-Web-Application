@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Flight } from 'app/model/flight';
 import { PurchasedTicket } from 'app/model/purchasedTicket';
@@ -6,13 +6,13 @@ import { FlightService } from 'app/services/flight-service';
 import { NgToastService } from 'ng-angular-popup';
 import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'app/services/ticket-service';
-@Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css']
-})
-export class LandingComponent implements OnInit {
 
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent {
   public dataSource = new MatTableDataSource<Flight>();
   public displayedColumns = ['takeoffLoc','landingLoc','takeoffTime','landingTime'];
   public cities: string[]=[];

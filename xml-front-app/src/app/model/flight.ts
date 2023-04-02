@@ -4,6 +4,7 @@ export class Flight {
     takeOffTime: string=''
     landingTime : string = ''
     ticketNum:number=0
+    id:string=''
 
     public constructor(obj?: Flight) {
         if (obj) {

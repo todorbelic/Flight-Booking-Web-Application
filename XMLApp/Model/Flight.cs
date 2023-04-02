@@ -17,7 +17,6 @@ namespace XMLApp.Model
         {
             this.flight = flight;
         }
-
         public GeoLocation? TakeOffLocation { get; set; }
         public GeoLocation? LandingLocation { get; set; }
         public DateTime TakeOffDate { get; set; }
