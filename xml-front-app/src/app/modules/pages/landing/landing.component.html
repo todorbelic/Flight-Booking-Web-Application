@@ -4,22 +4,28 @@
 <div class="flex-row" style="margin-top:5%">
   <div class="flex-col" style="background-color:#504c4c; margin-left:5%; height:150%">
     <div class="flex-row">
-      <mat-form-field appearance="fill">
-        <mat-label>From</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" >
-        <mat-label>To</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-form-field style="align-self: center;">
+        <input matInput placeholder = "Takeoff Contry" >
+     </mat-form-field>
+  
+     <mat-form-field style="align-self: center;">
+      <input matInput placeholder = "Takeoff  City" >
+     </mat-form-field>
     </div>
+
+    <div class="flex-row">
+      <mat-form-field style="align-self: center;">
+        <input matInput placeholder = "Landing Contry" >
+     </mat-form-field>
+  
+     <mat-form-field style="align-self: center;">
+      <input matInput placeholder = "Landing City" >
+     </mat-form-field>
+    </div>
+
+    <mat-form-field style="align-self: center;">
+      <input matInput placeholder = "Number of passengers" >
+     </mat-form-field>
 
     <mat-form-field style="align-self: center;">
       <input matInput [matDatepicker] = "picker" placeholder = "Choose a date" >
@@ -29,9 +35,6 @@
 
    <button mat-raised-button color="accent" style="background-color: white; align-self: center;">Find</button>
   </div>
-   
-
-
      <div style="margin-top:5%; width:60%; margin-left:5%">
         <table mat-table [dataSource]="dataSource"  matSort #empTbSort="matSort" class="fl-table" style="color:white">
             <ng-container matColumnDef="takeoffLoc" >

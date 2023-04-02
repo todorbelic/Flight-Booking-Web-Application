@@ -55,7 +55,6 @@ namespace XMLApp.Services
                         join ticket in ticketsQueryable on flight.TicketId equals ticket.Id.ToString()
                         where ticket.Quantity >= filter.PassengersCount
                         select new FlightFilterResultDTO(flight, ticket, filter.PassengersCount);
-            
             return query.ToList();
         }
 
