@@ -5,30 +5,30 @@
   <div class="flex-col" style="background-color:#504c4c; margin-left:5%; height:150%">
     <div class="flex-row">
       <mat-form-field style="align-self: center;">
-        <input matInput placeholder = "Takeoff Contry" >
+        <input matInput placeholder = "Takeoff Contry"   [(ngModel)]="takeoffCountry">
      </mat-form-field>
   
      <mat-form-field style="align-self: center;">
-      <input matInput placeholder = "Takeoff  City" >
+      <input matInput placeholder = "Takeoff  City"  [(ngModel)]="takeoffCity">
      </mat-form-field>
     </div>
 
     <div class="flex-row">
       <mat-form-field style="align-self: center;">
-        <input matInput placeholder = "Landing Country" >
+        <input matInput placeholder = "Landing Country"  [(ngModel)]="landingCountry">
      </mat-form-field>
   
      <mat-form-field style="align-self: center;">
-      <input matInput placeholder = "Landing City" >
+      <input matInput placeholder = "Landing City"  [(ngModel)]="landingCity">
      </mat-form-field>
     </div>
 
     <mat-form-field style="align-self: center;">
-      <input matInput placeholder = "Number of passengers" >
+      <input matInput placeholder = "Number of passengers"  [(ngModel)]="ticketNum">
      </mat-form-field>
 
     <mat-form-field style="align-self: center;">
-      <input matInput [matDatepicker] = "picker" placeholder = "Choose a date" >
+      <input matInput [matDatepicker] = "picker" placeholder = "Choose a date"  [(ngModel)]="date">
       <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
    </mat-form-field>
@@ -54,7 +54,7 @@
             <td mat-cell *matCellDef="let flight" class="cell-center">{{flight.landingTime}}</td>
           </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickTicket(row)"></tr>
         </table>
       </div>
 

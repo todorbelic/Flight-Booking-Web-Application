@@ -3,6 +3,7 @@ export class Flight {
     landingCity: string = ''
     takeOffTime: string=''
     landingTime : string = ''
+    ticketNum:number=0
 
     public constructor(obj?: Flight) {
         if (obj) {
