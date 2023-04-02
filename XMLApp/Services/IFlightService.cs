@@ -11,5 +11,6 @@ namespace XMLApp.Services
         Task<Flight> Create(NewFlightDTO flight);
         Task Update(string id, Flight updatedFlight);
         Task Delete(string id);
+        List<FlightDTO> GetAvailable();
     }
 }

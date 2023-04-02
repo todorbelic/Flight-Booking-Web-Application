@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user';
+import { User } from 'app/model/user';
 import { ToastrService } from 'ngx-toastr';
-import { AuthenticationService } from 'src/app/services/authentication-service';
-import { Address } from 'src/app/model/address';
+import { AuthenticationService } from 'app/services/authentication-service';
+import { Address } from 'app/model/address';
 
 @Component({
   selector: 'app-registration',
@@ -24,6 +24,7 @@ export class RegistrationComponent implements OnInit {
       this.registrationUser.address = this.registrationAddress
       this.authService.registerUser(this.registrationUser).subscribe(res => {
         console.log(res)
+        this.toast.success('Registration successful!')
       })
     }
   }

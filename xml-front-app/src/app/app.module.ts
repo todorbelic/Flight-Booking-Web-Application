@@ -8,7 +8,12 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +27,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     PagesModule,
     HttpClientModule,
     ToastrModule.forRoot(), 
+    FormsModule,
+    MatDatepickerModule,
+    MatInputModule,
     MatNativeDateModule
   ],
   providers: [],

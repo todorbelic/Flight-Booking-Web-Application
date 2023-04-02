@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MongoDB.Driver;
-using XMLApp.Model;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -11,6 +9,7 @@ using XMLApp.Services;
 using XMLApp.Settings;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using XMLApp.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,6 +84,7 @@ builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 //Configure MongoDb settings
 IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true, true).Build();
@@ -95,6 +95,7 @@ builder.Services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSet
 // Configure auto mapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.Logger.LogInformation("jea");
 // Configure the HTTP request pipeline.

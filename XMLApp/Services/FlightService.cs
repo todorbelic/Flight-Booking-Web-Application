@@ -55,13 +55,29 @@ namespace XMLApp.Services
                         join ticket in ticketsQueryable on flight.TicketId equals ticket.Id.ToString()
                         where ticket.Quantity >= filter.PassengersCount
                         select new FlightFilterResultDTO(flight, ticket, filter.PassengersCount);
-            
             return query.ToList();
         }
 
         public async Task Update(string id, Flight updatedFlight)
         {
             await _flightRepository.ReplaceOneAsync(updatedFlight);
+        }
+
+        public List<FlightDTO> GetAvailable()
+        {
+            IEnumerable<Flight> flights = Get();
+            List<FlightDTO> available=new List<FlightDTO>();
+            foreach (Flight flight in flights)
+            {
+               Ticket ticket= _ticketRepository.FindById(flight.TicketId);
+                if (ticket != null && ticket.Quantity>0)
+                {
+                    available.Add(new FlightDTO(flight));
+                }
+            }
+
+            return available;
+
         }
     }
 }

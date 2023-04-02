@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using XMLApp.DTO;
 using XMLApp.Model;
 using XMLApp.Services;
 
@@ -11,7 +14,6 @@ namespace XMLApp.Controllers
 
         // GET: TicketController
         private readonly ITicketService _ticketService;
-
         public TicketController(ITicketService ticketService)
         {
             _ticketService = ticketService;
@@ -39,6 +41,15 @@ namespace XMLApp.Controllers
         public async Task<ActionResult> Create(Ticket ticket)
         {
             await _ticketService.Create(ticket);
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("puchaseTicket")]
+        public async Task<ActionResult> PurchaseTicket(TicketPurchaseDTO ticketPurchase)
+        {
+            string? id = User.FindFirst(ClaimTypes.PrimarySid)?.Value;
+            await _ticketService.PurchaseTicket(ticketPurchase, id);
             return Ok();
         }
 

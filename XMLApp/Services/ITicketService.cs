@@ -1,4 +1,5 @@
-﻿using XMLApp.Model;
+﻿using XMLApp.DTO;
+using XMLApp.Model;
 
 namespace XMLApp.Services
 {
@@ -8,7 +9,7 @@ namespace XMLApp.Services
         public Task<Ticket> GetById(string id);
 
         public Task<Ticket> Create(Ticket ticket);
-
+        public Task PurchaseTicket(TicketPurchaseDTO ticketPurchaseDTO, string userId);
         public Task Update(string id, Ticket updatedTicket);
         public Task Delete(string id);
 

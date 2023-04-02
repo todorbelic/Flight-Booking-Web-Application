@@ -14,7 +14,6 @@ namespace XMLApp.Filters
                                                      f.TakeOffLocation.City.ToLower().Contains(filter.TakeOffCity.ToLower()) &&
                                                      f.LandingLocation.Country.ToLower().Contains(filter.LandingCountry.ToLower()) &&
                                                      f.LandingLocation.City.ToLower().Contains(filter.LandingCity.ToLower());
-
             return filterExpression;
         }
     }
