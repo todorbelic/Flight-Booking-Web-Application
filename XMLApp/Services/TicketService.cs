@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
 using XMLApp.DTO;
+using XMLApp.Exceptions;
 using XMLApp.Model;
 using XMLApp.Repository;
 
@@ -33,8 +34,14 @@ namespace XMLApp.Services
             var ticketPurchase = _mapper.Map<TicketPurchaseHistory>(ticketPurchaseDTO);
             ticketPurchase.User = await _userService.GetById(userId);
             ticketPurchase.Flight = await _flightService.GetById(ticketPurchaseDTO.FlightId);
-            ticketPurchase.Ticket = await _ticketRepository.FindByIdAsync(ticketPurchase.Flight.TicketId);
+            Ticket ticket = await _ticketRepository.FindByIdAsync(ticketPurchase.Flight.TicketId);
+            if (ticket.Quantity >= ticketPurchaseDTO.NumOfPassengers)
+                ticket.Quantity -= ticketPurchaseDTO.NumOfPassengers;
+            else
+                throw new NotAvailableException("Tickets are not available");
+            ticketPurchase.Ticket = ticket;
             ticketPurchase.TotalPrice = ticketPurchase.Ticket.Price * ticketPurchaseDTO.NumOfPassengers;
+            await Update(ticketPurchase.Flight.TicketId, ticket);
             await _ticketPurchaseHistoryRepositry.InsertOneAsync(ticketPurchase);
         }
 
