@@ -14,9 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import {NgToastModule} from 'ng-angular-popup'
-
-
 
 @NgModule({
   declarations: [
@@ -34,8 +31,7 @@ import {NgToastModule} from 'ng-angular-popup'
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    MatDialogModule,
-    NgToastModule
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

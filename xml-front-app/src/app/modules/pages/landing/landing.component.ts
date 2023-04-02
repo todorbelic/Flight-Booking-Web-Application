@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Flight } from 'app/model/flight';
 import { FlightService } from 'app/services/flight-service';
-import { NgToastService } from 'ng-angular-popup';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-landing',
