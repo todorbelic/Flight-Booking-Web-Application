@@ -15,7 +15,7 @@
 
     <div class="flex-row">
       <mat-form-field style="align-self: center;">
-        <input matInput placeholder = "Landing Contry" >
+        <input matInput placeholder = "Landing Country" >
      </mat-form-field>
   
      <mat-form-field style="align-self: center;">
@@ -57,5 +57,8 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       </div>
+
+      <button mat-raised-button color="accent" style="background-color: white; align-self: center;" (click)="test()">TEST</button>
+
 </div>
 </body>
