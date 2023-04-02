@@ -7,6 +7,7 @@ import { StartToolbarComponent } from './start-toolbar/start-toolbar.component';
 import { FlightFormComponent } from './flight-form/flight-form.component'; 
 import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule } from '@angular/forms';
+import { NewFlightFormComponent } from './new-flight-form/new-flight-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     RegistrationComponent,
     LandingComponent,
     StartToolbarComponent,
-    FlightFormComponent
+    FlightFormComponent,
+    NewFlightFormComponent
   ],
   imports: [
     CommonModule,

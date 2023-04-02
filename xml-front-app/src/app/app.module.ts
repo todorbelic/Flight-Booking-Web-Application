@@ -8,6 +8,7 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     PagesModule,
     HttpClientModule,
     ToastrModule.forRoot(), 
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
