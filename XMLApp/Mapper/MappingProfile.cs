@@ -12,6 +12,7 @@ namespace XMLApp.Mapper
             CreateMap<Ticket, NewFlightDTO>().ReverseMap();
             CreateMap<RegisterDTO, User>();
             CreateMap<User, RegisterDTO>();
+            CreateMap<TicketPurchaseHistory, TicketPurchaseDTO>().ReverseMap();
         }
     }
 }
