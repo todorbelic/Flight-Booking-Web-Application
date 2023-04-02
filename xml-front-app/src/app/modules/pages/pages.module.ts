@@ -9,9 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'app/material/material.module';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Routes, RouterModule } from '@angular/router';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const routes: Routes = [
-  { path: '/', component: LandingComponent },
+  { path: '', component: LandingComponent },
 
 ];
 
