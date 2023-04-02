@@ -6,6 +6,9 @@ import { LandingComponent } from './landing/landing.component';
 import { StartToolbarComponent } from './start-toolbar/start-toolbar.component';
 import { FlightFormComponent } from './flight-form/flight-form.component'; 
 import { FormsModule } from '@angular/forms';
+
+import { NewFlightFormComponent } from './new-flight-form/new-flight-form.component';
+
 import { MaterialModule } from 'app/material/material.module';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,13 +22,15 @@ const routes: Routes = [
 ];
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,
     RegistrationComponent,
     LandingComponent,
     StartToolbarComponent,
-    FlightFormComponent
+    FlightFormComponent,
+    NewFlightFormComponent
   ],
   imports: [
     CommonModule,

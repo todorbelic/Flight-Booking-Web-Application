@@ -1,0 +1,36 @@
+.adding-flight-mat-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adding-flight-mat-card-content mat-form-field{
+    height: 65px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.adding-flight-geolocation{
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.adding-flight-mat-card {
+    display: flex;
+    align-self: center;
+    width: max-content;
+    border-radius: 5px;
+    margin:auto;
+    
+}
+
+
+.adding-flight-mat-card-buttons{
+display: flex;
+justify-content: center;
+}
+
+.adding-flight-page{
+    height: 100vh;
+    display: flex;
+    align-content: center;
+}
