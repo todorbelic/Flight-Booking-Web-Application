@@ -13,6 +13,12 @@
     
 }
 
+.registration-mat-card mat-form-field {
+    max-height: 65px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 .registration-mat-card-buttons{
 display: flex;
 justify-content: center;

@@ -24,6 +24,7 @@ export class RegistrationComponent implements OnInit {
       this.registrationUser.address = this.registrationAddress
       this.authService.registerUser(this.registrationUser).subscribe(res => {
         console.log(res)
+        this.toast.success('Registration successful!')
       })
     }
   }

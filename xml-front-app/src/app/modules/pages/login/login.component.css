@@ -13,6 +13,12 @@
     
 }
 
+.login-mat-card mat-form-field {
+    width: 300px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 .login-mat-card-buttons{
 display: flex;
 justify-content: center;
