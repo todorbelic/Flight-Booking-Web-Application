@@ -62,5 +62,22 @@ namespace XMLApp.Services
         {
             await _flightRepository.ReplaceOneAsync(updatedFlight);
         }
+
+        public List<Flight> GetAvailable()
+        {
+            IEnumerable<Flight> flights = Get();
+            List<Flight> available=new List<Flight>();
+            foreach (Flight flight in flights)
+            {
+               Ticket ticket= _ticketRepository.FindById(flight.TicketId);
+                if (ticket != null && ticket.Quantity>0)
+                {
+                    available.Add(flight);
+                }
+            }
+
+            return available;
+
+        }
     }
 }
