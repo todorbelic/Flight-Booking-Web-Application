@@ -1,15 +1,15 @@
 export class Flight {
-    TakeOffLocation: string = ''
-    LandingLocation: string = ''
-    TakeOffDate: string=''
-    LandingDate : string = ''
+    takeOffCity: string = ''
+    landingCity: string = ''
+    takeOffTime: string=''
+    landingTime : string = ''
 
     public constructor(obj?: Flight) {
         if (obj) {
-          this.TakeOffLocation = obj.TakeOffLocation
-          this.LandingLocation = obj.LandingLocation
-          this.TakeOffDate = obj.TakeOffDate
-          this.LandingDate = obj.LandingDate
+          this.takeOffCity = obj.takeOffCity
+          this.landingCity = obj.landingCity
+          this.takeOffTime = obj.takeOffTime
+          this.landingTime = obj.landingTime
         }
       }
 }

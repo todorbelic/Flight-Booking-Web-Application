@@ -63,16 +63,16 @@ namespace XMLApp.Services
             await _flightRepository.ReplaceOneAsync(updatedFlight);
         }
 
-        public List<Flight> GetAvailable()
+        public List<FlightDTO> GetAvailable()
         {
             IEnumerable<Flight> flights = Get();
-            List<Flight> available=new List<Flight>();
+            List<FlightDTO> available=new List<FlightDTO>();
             foreach (Flight flight in flights)
             {
                Ticket ticket= _ticketRepository.FindById(flight.TicketId);
                 if (ticket != null && ticket.Quantity>0)
                 {
-                    available.Add(flight);
+                    available.Add(new FlightDTO(flight));
                 }
             }
 
