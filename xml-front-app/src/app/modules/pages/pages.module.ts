@@ -6,6 +6,7 @@ import { LandingComponent } from './landing/landing.component';
 import { StartToolbarComponent } from './start-toolbar/start-toolbar.component';
 import { FlightFormComponent } from './flight-form/flight-form.component'; 
 import { MaterialModule } from 'src/app/material/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MaterialModule } from 'src/app/material/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
     
   ]
 })
