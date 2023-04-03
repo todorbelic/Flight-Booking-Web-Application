@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './modules/pages/pages.module';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomerModule } from './modules/customer/customer.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { AuthInterceptor } from './auth/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,11 @@ import { AdminModule } from './modules/admin/admin.module';
     MatNativeDateModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
