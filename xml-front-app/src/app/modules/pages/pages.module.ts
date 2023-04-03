@@ -15,10 +15,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AppRoutingModule } from 'app/app-routing.module';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-
+  { path: 'login', component: LoginComponent},
+  { path:'registration', component: RegistrationComponent},
+  { path: 'new-flight', component: NewFlightFormComponent}
 ];
 
 
@@ -34,6 +37,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     MaterialModule,
     FormsModule,
     RouterModule.forChild(routes),

@@ -10,8 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { AppRoutingModule } from 'app/app-routing.module';
+
 const routes: Routes = [
-  { path: 'customer/home', component: CustomerHomeComponent },
+  { path: 'customer-home', component: CustomerHomeComponent },
 
 ];
 
@@ -26,7 +28,7 @@ const routes: Routes = [
     MaterialModule,
     FormsModule,
     RouterModule.forChild(routes),
-
+    AppRoutingModule,
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule

@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { Flight } from 'app/model/flight';
-import { PurchasedTicket } from 'app/model/purchasedTicket';
-import { FlightService } from 'app/services/flight-service';
-import { NgToastService } from 'ng-angular-popup';
-import { ToastrService } from 'ngx-toastr';
-import { TicketService } from 'app/services/ticket-service';
+import { Component } from '@angular/core'
+import {  MatTableDataSource } from '@angular/material/table'
+import { Flight } from 'app/model/flight'
+import { PurchasedTicket } from 'app/model/purchasedTicket'
+import { FlightService } from 'app/services/flight-service'
+import { ToastrService } from 'ngx-toastr'
+import { TicketService } from 'app/services/ticket-service'
 
 @Component({
   selector: 'customer-home',

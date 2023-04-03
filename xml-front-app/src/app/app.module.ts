@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CustomerModule } from './modules/customer/customer.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     MaterialModule,
     PagesModule,
+    CustomerModule,
     HttpClientModule,
     ToastrModule.forRoot(), 
     FormsModule,
