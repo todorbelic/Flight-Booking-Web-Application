@@ -14,12 +14,14 @@ export class AdminToolbarComponent {
   }
 
   HomeClick(){
-    this.router.navigate(['admin-home']);
+    this.router.navigate(['/admin-home']);
   }
 
   LogoutClick(){
     this.authService.logout();
     this.router.navigate(['']);
   }
-
+  AddFlightClick(){
+    this.router.navigate(['/admin-new-flight']);
+  }
 }

@@ -6,9 +6,6 @@ import { LandingComponent } from './landing/landing.component';
 import { StartToolbarComponent } from './start-toolbar/start-toolbar.component';
 import { FlightFormComponent } from './flight-form/flight-form.component'; 
 import { FormsModule } from '@angular/forms';
-
-import { NewFlightFormComponent } from './new-flight-form/new-flight-form.component';
-
 import { MaterialModule } from 'app/material/material.module';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,8 +17,7 @@ import { AppRoutingModule } from 'app/app-routing.module';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent},
-  { path:'registration', component: RegistrationComponent},
-  { path: 'new-flight', component: NewFlightFormComponent}
+  { path:'register', component: RegistrationComponent},
 ];
 
 
@@ -33,7 +29,6 @@ const routes: Routes = [
     LandingComponent,
     StartToolbarComponent,
     FlightFormComponent,
-    NewFlightFormComponent
   ],
   imports: [
     CommonModule,

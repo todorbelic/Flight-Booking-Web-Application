@@ -1,3 +1,19 @@
+
+
+body {
+    overflow:auto;
+    background-image: url(/assets/images/flight.webp);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+
 .adding-flight-mat-card-content{
     display: flex;
     flex-direction: column;

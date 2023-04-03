@@ -1,7 +1,7 @@
 
 
 body {
-    overflow:hidden;
+    overflow:auto;
     background-image: url(/assets/images/flight.webp);
     background-size: cover;
     background-position: center center;

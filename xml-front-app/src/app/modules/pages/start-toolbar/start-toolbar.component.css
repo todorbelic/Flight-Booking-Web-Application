@@ -4,6 +4,8 @@
     color: white;
     min-height: 60px;
     position: absolute;
+    z-index: 10000;
+
   }
   
   .mat-button {

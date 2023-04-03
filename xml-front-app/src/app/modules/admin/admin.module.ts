@@ -9,9 +9,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { NewFlightFormComponent } from './new-flight-form/new-flight-form.component';
 
 const routes: Routes = [
   { path: 'admin-home', component: AdminHomeComponent },
+  { path: 'admin-new-flight', component: NewFlightFormComponent },
 
 ];
 
@@ -22,7 +24,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AdminToolbarComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    NewFlightFormComponent
   ],
   imports: [
     CommonModule,
