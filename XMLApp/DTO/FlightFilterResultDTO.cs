@@ -9,6 +9,7 @@ namespace XMLApp.DTO
         public string TakeOffCity { get; set; }
         public string LandingCountry { get; set; }
         public string LandingCity { get; set; }
+        public int TicketNumber { get; set; }
         public double TicketPricePerPassenger { get; set; }
         public double TicketPriceTotal { get; set; }
         public string TicketId { get; set; }
@@ -25,6 +26,7 @@ namespace XMLApp.DTO
             TicketPricePerPassenger = ticket.Price;
             TicketId = ticket.Id.ToString();
             FlightId = flight.Id.ToString();
+            TicketNumber= ticket.Quantity;
         }
     }
 }

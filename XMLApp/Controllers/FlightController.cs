@@ -31,7 +31,7 @@ namespace XMLApp.Controllers
         }
 
         [HttpGet("available")]
-        public ActionResult<Flight> GetAvailable()
+        public ActionResult<FlightFilterResultDTO> GetAvailable()
         {
             return Ok(_flightService.GetAvailable());
         }

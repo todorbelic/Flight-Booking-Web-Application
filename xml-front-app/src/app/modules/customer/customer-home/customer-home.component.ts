@@ -13,7 +13,7 @@ import { TicketService } from 'app/services/ticket-service'
 })
 export class CustomerHomeComponent {
   public dataSource = new MatTableDataSource<Flight>();
-  public displayedColumns = ['takeoffLoc','landingLoc','takeoffTime','landingTime'];
+  public displayedColumns = ['takeOffCity','landingCity','takeOffDate','landingDate','ticketPricePerPassenger','ticketNumber'];
   public cities: string[]=[];
   public flights:Flight[]=[];
   public selectedFlight:Flight=new Flight();
@@ -64,7 +64,7 @@ export class CustomerHomeComponent {
 
     if(confirm("Do you want to purchase selected tickets?")) {
       this.purchasedTicket.numOfPassengers=parseInt(this.ticketNum);
-      this.purchasedTicket.flightId=this.selectedFlight.id;
+      this.purchasedTicket.flightId=this.selectedFlight.flightId;
       this.ticketService.buyTicket(this.purchasedTicket).subscribe(res=>{
         this.toast.success('Ticket bought!');
       })

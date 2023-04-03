@@ -1,17 +1,23 @@
 export class Flight {
+
     takeOffCity: string = ''
     landingCity: string = ''
-    takeOffTime: string=''
-    landingTime : string = ''
-    ticketNum:number=0
-    id:string=''
+    takeOffDate: string=''
+    landingDate : string = ''
+    ticketNumber:number=0
+    ticketPricePerPassenger:number=9
+    ticketPriceTotal:number=0
+    flightId:string=''
 
     public constructor(obj?: Flight) {
         if (obj) {
           this.takeOffCity = obj.takeOffCity
           this.landingCity = obj.landingCity
-          this.takeOffTime = obj.takeOffTime
-          this.landingTime = obj.landingTime
+          this.takeOffDate = obj.takeOffDate
+          this.landingDate = obj.landingDate
+          this.ticketNumber=obj.ticketNumber
+          this.ticketPricePerPassenger=obj.ticketPricePerPassenger
+          this.flightId=obj.flightId
         }
       }
 }

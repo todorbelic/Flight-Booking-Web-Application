@@ -63,7 +63,7 @@ export class LandingComponent implements OnInit {
 
     if(confirm("Do you want to purchase selected tickets?")) {
       this.purchasedTicket.numOfPassengers=parseInt(this.ticketNum);
-      this.purchasedTicket.flightId=this.selectedFlight.id;
+      this.purchasedTicket.flightId=this.selectedFlight.flightId;
       this.ticketService.buyTicket(this.purchasedTicket).subscribe(res=>{
         this.toast.success('Ticket bought!');
       })
@@ -76,13 +76,6 @@ export class LandingComponent implements OnInit {
       return false;
     }
     return true;
-  }
-
-  test(){
-    this.flightService.test().subscribe(res=>{
-        console.log(res)
-
-    })
   }
 
 }

@@ -50,6 +50,14 @@ namespace XMLApp.Services
             await _ticketRepository.DeleteByIdAsync(id);
         }
 
+        public List<PurchasedTicketDTO> GetPurchasedTickets(string userId)
+        {
+            List<TicketPurchaseHistory> ticketPurchaseHistories = _ticketPurchaseHistoryRepositry.FilterBy(t => t.User.Id.ToString().Equals(userId)).ToList();
+            var purchasesDTO = _mapper.Map<List<PurchasedTicketDTO>>(ticketPurchaseHistories);
+            return purchasesDTO;
+
+        }
+
         public List<Ticket> Get()
         {
             return _ticketRepository.AsQueryable().ToList();

@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { CustomerToolbarComponent } from './customer-toolbar/customer-toolbar.component';
+import { CustomerTicketsComponent } from './customer-tickets/customer-tickets.component';
 
 const routes: Routes = [
   { path: 'customer-home', component: CustomerHomeComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CustomerHomeComponent,
-    CustomerToolbarComponent
+    CustomerToolbarComponent,
+    CustomerTicketsComponent
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ namespace XMLApp.Services
 
         public Task<Ticket> Create(Ticket ticket);
         public Task PurchaseTicket(TicketPurchaseDTO ticketPurchaseDTO, string userId);
+        public List<PurchasedTicketDTO> GetPurchasedTickets(string userId);
         public Task Update(string id, Ticket updatedTicket);
         public Task Delete(string id);
 

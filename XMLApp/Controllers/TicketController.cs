@@ -53,6 +53,14 @@ namespace XMLApp.Controllers
             return Ok();
         }
 
+        [Authorize]
+        [HttpGet("GetAllPurchasedTickets")]
+        public ActionResult GetAllPurchased()
+        {
+            string? id = User.FindFirst(ClaimTypes.PrimarySid)?.Value;
+            return Ok(_ticketService.GetPurchasedTickets(id));
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(Ticket ticket)
         {
