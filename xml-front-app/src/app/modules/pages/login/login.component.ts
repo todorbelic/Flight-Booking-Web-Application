@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     if(this.validityChecked()) {
       this.authService.logInUser(this.credentials).subscribe(res => {
         this.authService.setSession(res);
-        this.router.navigate(['/']);
+        this.router.navigate(['customer/home']);
           
       }, error=>{
         this.toast.error('Login unsuccessful!');

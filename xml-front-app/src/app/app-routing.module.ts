@@ -4,12 +4,13 @@ import { LandingComponent } from './modules/pages/landing/landing.component';
 import { LoginComponent } from './modules/pages/login/login.component';
 import { RegistrationComponent } from './modules/pages/registration/registration.component';
 import { NewFlightFormComponent } from './modules/pages/new-flight-form/new-flight-form.component';
-
+import { CustomerHomeComponent } from './modules/customer/customer-home/customer-home.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent},
   { path:'registration', component: RegistrationComponent},
   { path: 'new-flight', component: NewFlightFormComponent},
+  { path: 'customer/home', component: CustomerHomeComponent },
 
 ];
 

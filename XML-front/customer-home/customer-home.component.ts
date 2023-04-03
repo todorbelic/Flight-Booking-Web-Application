@@ -8,11 +8,11 @@ import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'app/services/ticket-service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'customer-home',
+  templateUrl: './customer-home.component.html',
+  styleUrls: ['./customer-home.component.css']
 })
-export class HomeComponent {
+export class CustomerHomeComponent {
   public dataSource = new MatTableDataSource<Flight>();
   public displayedColumns = ['takeoffLoc','landingLoc','takeoffTime','landingTime'];
   public cities: string[]=[];
@@ -56,6 +56,7 @@ export class HomeComponent {
   }
 
   clickTicket(flight:any){
+    console.log("ajcnsdkjcnalio");
     this.selectedFlight=flight;
     if (!this.checkFields()){
       this.toast.error('All fields need to be filled!')
