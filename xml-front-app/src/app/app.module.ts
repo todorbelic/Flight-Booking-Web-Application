@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomerModule } from './modules/customer/customer.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CustomerModule } from './modules/customer/customer.module';
     MaterialModule,
     PagesModule,
     CustomerModule,
+    AdminModule,
     HttpClientModule,
     ToastrModule.forRoot(), 
     FormsModule,

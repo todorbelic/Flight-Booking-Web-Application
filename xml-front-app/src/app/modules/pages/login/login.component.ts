@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
     if(this.validityChecked()) {
       this.authService.logInUser(this.credentials).subscribe(res => {
         this.authService.setSession(res);
-        this.router.navigate(['/customer-home']);
+        let role=this.authService.getRole();
+        if(role==='CUSTOMER') this.router.navigate(['/customer-home']);
+        else if (role==='ADMIN') this.router.navigate(['/admin-home']);
+        else console.log('ERROR: no such user type');
+
+        console.log(role);
           
       }, error=>{
         this.toast.error('Login unsuccessful!');

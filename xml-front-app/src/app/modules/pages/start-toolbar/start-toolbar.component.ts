@@ -14,7 +14,7 @@ export class StartToolbarComponent implements OnInit {
   }
 
   HomeClick(){
-
+    this.router.navigate(['']);
   }
 
   RegisterClick(){

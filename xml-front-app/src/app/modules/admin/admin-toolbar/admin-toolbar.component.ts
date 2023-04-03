@@ -3,24 +3,23 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication-service';
 
 @Component({
-  selector: 'customer-toolbar',
-  templateUrl: './customer-toolbar.component.html',
-  styleUrls: ['./customer-toolbar.component.css']
+  selector: 'admin-toolbar',
+  templateUrl: './admin-toolbar.component.html',
+  styleUrls: ['./admin-toolbar.component.css']
 })
-export class CustomerToolbarComponent {
-
+export class AdminToolbarComponent {
   constructor(private router:Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   HomeClick(){
-    this.router.navigate(['/customer-home']);
+    this.router.navigate(['admin-home']);
   }
 
   LogoutClick(){
     this.authService.logout();
     this.router.navigate(['']);
-
   }
+
 }
