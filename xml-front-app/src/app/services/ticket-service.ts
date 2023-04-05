@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class TicketService {
 
-  apiHost: string = 'https://localhost:44329/'
+  apiHost: string = 'http://localhost:44329/'
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
   constructor(private http: HttpClient) { }

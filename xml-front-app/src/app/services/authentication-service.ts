@@ -10,7 +10,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class AuthenticationService {
 
-  apiHost: string = 'https://localhost:44329/'
+  apiHost: string = 'http://localhost:44329/'
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
   constructor(private http: HttpClient) { }

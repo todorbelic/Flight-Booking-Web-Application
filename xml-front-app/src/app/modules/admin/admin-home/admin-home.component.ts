@@ -4,6 +4,9 @@ import { Flight } from 'app/model/flight';
 import { ToastrService } from 'ngx-toastr';
 import { FlightService } from 'app/services/flight-service';
 import { TicketService } from 'app/services/ticket-service';
+import { FlightFilter } from 'app/model/flightFilter';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
@@ -16,13 +19,9 @@ export class AdminHomeComponent {
   public flights:Flight[]=[];
   public selectedFlight:Flight=new Flight();
 
-  public takeoffCountry:string='';
-  public takeoffCity:string='';
+  public flightToFind:FlightFilter=new FlightFilter();
 
-  public landingCountry:string='';
-  public landingCity:string='';
-  public ticketNum:string='';
-  public date:string='';
+
 
 
   constructor(private toast : ToastrService,private flightService:FlightService,private ticketService:TicketService) { }
@@ -50,6 +49,20 @@ export class AdminHomeComponent {
     this.flightService.deleteFlight(flight.flightId).subscribe(res=>{
      this.toast.success('Flight deleted successfully!')
      this.dataSource.data = this.flights.filter(f=> f.flightId!==flight.flightId)
+    })
+  }
+
+  findFlights(){
+    if (this.flightToFind.landingCity==='' || this.flightToFind.passengersCount===0 || this.flightToFind.takeOffCity===''){
+      this.toast.error('All fields need to be filled!');
+       return;
+    }
+   this.flightToFind.date = moment(this.flightToFind.date).format('yyyy-MM-DD')
+    console.log(this.flightToFind.date)
+    this.flightService.findFlights(this.flightToFind).subscribe(res=>{
+      this.flights=res;
+      this.dataSource.data = this.flights;
+      console.log(this.flights);
     })
   }
 

@@ -1,37 +1,37 @@
 
 <body style="padding:0">
     <admin-toolbar></admin-toolbar>
-    <div class="flex-row" style="margin-top:5%">
-      <div class="flex-col" style="background-color:#504c4c; margin-left:2%; height:150%">
-        <div class="flex-row">
-          <mat-form-field style="align-self: center;">
-            <input matInput placeholder = "Takeoff Country"   [(ngModel)]="takeoffCountry">
-         </mat-form-field>
-      
-         <mat-form-field style="align-self: center;">
-          <input matInput placeholder = "Takeoff  City"  [(ngModel)]="takeoffCity">
-         </mat-form-field>
-        </div>
-    
-        <div class="flex-row">
-          <mat-form-field style="align-self: center;">
-            <input matInput placeholder = "Landing Country"  [(ngModel)]="landingCountry">
-         </mat-form-field>
-      
-         <mat-form-field style="align-self: center;">
-          <input matInput placeholder = "Landing City"  [(ngModel)]="landingCity">
-         </mat-form-field>
-        </div>
-    
-    
-        <mat-form-field style="align-self: center;">
-          <input matInput [matDatepicker] = "picker" placeholder = "Choose a date"  [(ngModel)]="date">
-          <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+  <div class="flex-row" style="margin-top:5%">
+    <div class="flex-col" style="background-color:#504c4c; margin-left:5%; height:150%">
+      <div id="searchRow1" class="flex-row">
+       <mat-form-field style="align-self: center;">
+        <input matInput placeholder = "Takeoff  City"  [(ngModel)]="flightToFind.takeOffCity">
        </mat-form-field>
-    
-       <button mat-raised-button color="accent" style="background-color: white; align-self: center;">Find</button>
+  
+       <mat-form-field style="align-self: center;">
+        <input matInput placeholder = "Landing City"  [(ngModel)]="flightToFind.landingCity">
+       </mat-form-field>
       </div>
+      
+  
+      <mat-form-field id="searchRow2" style="align-self: center;">
+        <input matInput placeholder = "Number of Tickets"  [(ngModel)]="flightToFind.passengersCount">
+     </mat-form-field>
+    
+  
+  
+      <mat-form-field id="searchRow3" style="align-self: center;">
+        <input matInput [matDatepicker] = "picker" placeholder = "Choose a date"  [(ngModel)]="flightToFind.date">
+        <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <button (click)="findFlights()" mat-raised-button color="accent" style="background-color: white; align-self: center;">Find</button>
+     </div>
+
+
+     
+    
       <div style="margin-top:5%; width:60%; margin-left:5%">
         <table mat-table [dataSource]="dataSource"  matSort #empTbSort="matSort" class="fl-table" style="color:white">
             <ng-container matColumnDef="takeOffCity" >

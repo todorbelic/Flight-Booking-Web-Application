@@ -1,7 +1,7 @@
 <body>
     <customer-toolbar></customer-toolbar>
     
-        <table mat-table [dataSource]="dataSource"  matSort #empTbSort="matSort" class="fl-table" style="color:white">
+        <table mat-table [dataSource]="dataSource"  matSort #empTbSort="matSort" class="fl-table" class="ticket-table">
             <ng-container matColumnDef="takeOffCity" >
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-center" > Takeoff Location </th>
                 <td mat-cell *matCellDef="let flight" class="clickable cell-center" >{{flight.takeOffCity}}</td>

@@ -34,3 +34,8 @@ body {
     background-color: white;
     background: fixed;
   }
+
+  .ticket-table{
+    width:50%;
+    margin-top: 5%;
+  }
