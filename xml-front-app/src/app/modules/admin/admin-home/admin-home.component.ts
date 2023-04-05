@@ -28,7 +28,7 @@ export class AdminHomeComponent {
   constructor(private toast : ToastrService,private flightService:FlightService,private ticketService:TicketService) { }
 
   ngOnInit(): void {
-    this.loadCities();
+    //this.loadCities();
     this.loadFlights();
   }
 
@@ -40,29 +40,17 @@ export class AdminHomeComponent {
   }
 
   loadFlights(){
-    
     this.flightService.getFlights().subscribe(res=>{
       this.flights=res;
       this.dataSource.data = this.flights;
-      console.log(this.flights);
-
     })
-    
-    
   }
 
   deleteFlight(flight: Flight){
     this.flightService.deleteFlight(flight.flightId).subscribe(res=>{
-      console.log('uspesno brisanje');
-      this.toast.success('Flight successfully deleted!');
-
-      this.loadFlights();
-    }
-    );
-
-
-
-    
+     this.toast.success('Flight deleted successfully!')
+     this.dataSource.data = this.flights.filter(f=> f.flightId!==flight.flightId)
+    })
   }
 
 }

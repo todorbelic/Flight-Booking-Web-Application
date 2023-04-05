@@ -91,9 +91,8 @@ namespace XMLApp.Controllers
             {
                 return NotFound();
             }
-
             await _flightService.Delete(id);
-            return Ok();
+            return Ok("Successful deletion!");
         }
     }
 }

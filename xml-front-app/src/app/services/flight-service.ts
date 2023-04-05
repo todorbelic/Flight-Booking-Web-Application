@@ -14,7 +14,7 @@ export class FlightService {
   constructor(private http: HttpClient) { }
 
   getFlights(){
-    return this.http.get<Flight[]>(this.apiHost+'api/Flight/available', { headers: this.headers });
+    return this.http.get<Flight[]>(this.apiHost+'api/Flight/available', { headers: this.headers});
   }
 
   getCities(){
@@ -26,8 +26,8 @@ export class FlightService {
 
   }
 
-  deleteFlight(id: string){
-    return this.http.delete<any>(this.apiHost + 'api/Flight/'+ id, { headers: this.headers });
+  deleteFlight(id: string) : Observable<any>{
+    return this.http.delete(this.apiHost + 'api/Flight/'+ id, { headers: this.headers, responseType: 'text' });
   }
 
   buyTicket(flight:Flight){
