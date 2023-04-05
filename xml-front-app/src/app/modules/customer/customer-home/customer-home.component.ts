@@ -78,11 +78,4 @@ export class CustomerHomeComponent {
     return true;
   }
 
-  test(){
-    this.flightService.test().subscribe(res=>{
-        console.log(res)
-
-    })
-  }
-
 }

@@ -23,13 +23,6 @@ namespace XMLApp.Controllers
             return Ok(_flightService.Get());
         }
 
-        [HttpGet("test")]
-        public ActionResult<Flight> Test()
-        {
-            Flight flight = new Flight() { TicketId="12" };
-            return Ok(flight) ;
-        }
-
         [HttpGet("available")]
         public ActionResult<FlightFilterResultDTO> GetAvailable()
         {

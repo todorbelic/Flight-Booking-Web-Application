@@ -7,9 +7,7 @@ namespace XMLApp.DTO
     {
         [JsonConverter(typeof(DateOnlyJsonConverter))]
         public DateOnly Date { get; set; }
-        public string TakeOffCountry { get; set; }
         public string TakeOffCity { get; set; }
-        public string LandingCountry { get; set; }
         public string LandingCity { get; set; }
         public int PassengersCount { get; set; }
     }

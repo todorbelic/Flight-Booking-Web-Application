@@ -16,4 +16,7 @@ app-root {
 
 .toast-container {
     font-family: sans-serif;
+    pointer-events: none;
+  position: fixed;
+  z-index: 999999;
 }

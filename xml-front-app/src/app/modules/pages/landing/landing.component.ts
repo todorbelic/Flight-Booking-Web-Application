@@ -6,6 +6,7 @@ import { FlightService } from 'app/services/flight-service';
 import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'app/services/ticket-service';
 import { FlightFilter } from 'app/model/flightFilter';
+import * as moment from 'moment';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -67,10 +68,24 @@ export class LandingComponent implements OnInit {
   }
 
   checkFields(){
-    if(this.flightToFind.takeOffCity===''  || this.flightToFind.landingCity===""|| this.flightToFind.passengersCount===0 || this.flightToFind.date===''){
+    if(this.flightToFind.takeOffCity===''  || this.flightToFind.landingCity===""|| this.flightToFind.passengersCount===0 ){
       return false;
     }
     return true;
+  }
+
+  findFlights(){
+    if (this.flightToFind.landingCity==='' || this.flightToFind.passengersCount===0 || this.flightToFind.takeOffCity===''){
+      this.toast.error('All fields need to be filled!');
+       return;
+    }
+   this.flightToFind.date = moment(this.flightToFind.date).format('yyyy-MM-DD')
+    console.log(this.flightToFind.date)
+    this.flightService.findFlights(this.flightToFind).subscribe(res=>{
+      this.flights=res;
+      this.dataSource.data = this.flights;
+      console.log(this.flights);
+    })
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeoLocation } from 'app/model/geo-location';
 import { NewFlightDTO } from 'app/model/new-flight-dto';
-import { NewFlightService } from 'app/services/new-flight.service';
+import { FlightService } from 'app/services/flight-service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -42,7 +42,7 @@ export class NewFlightFormComponent implements OnInit {
     price: 0
   }
 
-  constructor(private newFlightService: NewFlightService, private toast: ToastrService){}
+  constructor(private flightService: FlightService, private toast: ToastrService){}
 
   ngOnInit(): void {}
   addFlight(){
@@ -59,7 +59,7 @@ export class NewFlightFormComponent implements OnInit {
     this.dto.price = this.price
     this.dto.quantity = this.quantity
 
-    this.newFlightService.addNewFlight(this.dto).subscribe(res => {
+    this.flightService.addNewFlight(this.dto).subscribe(res => {
       console.log(res)
       this.toast.success('Flight added successfully!')
     })

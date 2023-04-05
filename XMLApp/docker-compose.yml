@@ -12,7 +12,7 @@ services:
   xmlapp:
     build: .
     ports:
-      - "8080:80"
+      - "44329:80"
     depends_on:
       - mongodb_container
     environment:
