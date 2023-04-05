@@ -37,6 +37,17 @@ namespace XMLApp.Controllers
             return Ok(ticket);
         }
 
+        [HttpGet("customer/{id}")]
+        public ActionResult GetByCustomerId(string id)
+        {
+            var tickets =  _ticketService.GetPurchasedTickets(id);
+            if (tickets == null)
+            {
+                return NotFound();
+            }
+            return Ok(tickets);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create(Ticket ticket)
         {

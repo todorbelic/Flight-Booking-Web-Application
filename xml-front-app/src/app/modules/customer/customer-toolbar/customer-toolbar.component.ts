@@ -17,6 +17,10 @@ export class CustomerToolbarComponent {
   HomeClick(){
     this.router.navigate(['/customer-home']);
   }
+  TicketsClick(){
+    this.router.navigate(['/customer-tickets']);
+  }
+
 
   LogoutClick(){
     this.authService.logout();

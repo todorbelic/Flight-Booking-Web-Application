@@ -20,6 +20,10 @@ export class TicketService {
 
   }
 
+  getAllForUser(id:string){
+    return this.http.get<PurchasedTicket[]>(this.apiHost + 'api/Ticket/customer/' + id, { headers: this.headers });
+  }
+
   
 
 }

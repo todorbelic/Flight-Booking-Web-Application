@@ -5,6 +5,7 @@ import { PurchasedTicket } from 'app/model/purchasedTicket';
 import { FlightService } from 'app/services/flight-service';
 import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'app/services/ticket-service';
+import { FlightFilter } from 'app/model/flightFilter';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -13,18 +14,12 @@ import { TicketService } from 'app/services/ticket-service';
 export class LandingComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<Flight>();
-  public displayedColumns = ['takeoffLoc','landingLoc','takeoffTime','landingTime'];
+  public displayedColumns = ['takeOffCity','landingCity','takeOffDate','landingDate','ticketPricePerPassenger','ticketNumber'];
   public cities: string[]=[];
   public flights:Flight[]=[];
   public selectedFlight:Flight=new Flight();
+  public flightToFind:FlightFilter=new FlightFilter();
 
-  public takeoffCountry:string='';
-  public takeoffCity:string='';
-
-  public landingCountry:string='';
-  public landingCity:string='';
-  public ticketNum:string='';
-  public date:string='';
   public purchasedTicket:PurchasedTicket=new PurchasedTicket();
 
 
@@ -62,7 +57,7 @@ export class LandingComponent implements OnInit {
     }
 
     if(confirm("Do you want to purchase selected tickets?")) {
-      this.purchasedTicket.numOfPassengers=parseInt(this.ticketNum);
+      this.purchasedTicket.ticketQuantity=this.flightToFind.passengersCount;
       this.purchasedTicket.flightId=this.selectedFlight.flightId;
       this.ticketService.buyTicket(this.purchasedTicket).subscribe(res=>{
         this.toast.success('Ticket bought!');
@@ -72,7 +67,7 @@ export class LandingComponent implements OnInit {
   }
 
   checkFields(){
-    if(this.takeoffCountry==='' || this.takeoffCity==='' || this.landingCity==="" || this.landingCountry==='' || this.ticketNum==='' || this.date===''){
+    if(this.flightToFind.takeOffCity===''  || this.flightToFind.landingCity===""|| this.flightToFind.passengersCount===0 || this.flightToFind.date===''){
       return false;
     }
     return true;

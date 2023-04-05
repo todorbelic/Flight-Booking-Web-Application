@@ -16,7 +16,7 @@ import { CustomerTicketsComponent } from './customer-tickets/customer-tickets.co
 
 const routes: Routes = [
   { path: 'customer-home', component: CustomerHomeComponent },
-
+  { path: 'customer-tickets', component: CustomerTicketsComponent },
 ];
 
 

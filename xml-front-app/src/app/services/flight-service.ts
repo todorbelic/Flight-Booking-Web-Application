@@ -26,6 +26,10 @@ export class FlightService {
 
   }
 
+  deleteFlight(id: string){
+    return this.http.delete<any>(this.apiHost + 'api/Flight/'+ id, { headers: this.headers });
+  }
+
   buyTicket(flight:Flight){
     return this.http.post<any>(this.apiHost + 'api/Flight/buy', flight, { headers: this.headers });
 

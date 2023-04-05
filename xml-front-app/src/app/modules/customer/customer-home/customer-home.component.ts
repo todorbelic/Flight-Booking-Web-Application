@@ -55,15 +55,14 @@ export class CustomerHomeComponent {
   }
 
   clickTicket(flight:any){
-    console.log("ajcnsdkjcnalio");
     this.selectedFlight=flight;
     if (!this.checkFields()){
-      this.toast.error('All fields need to be filled!')
+      this.toast.error('Please specify number of tickets!')
       return;
     }
 
     if(confirm("Do you want to purchase selected tickets?")) {
-      this.purchasedTicket.numOfPassengers=parseInt(this.ticketNum);
+      this.purchasedTicket.ticketQuantity=parseInt(this.ticketNum);
       this.purchasedTicket.flightId=this.selectedFlight.flightId;
       this.ticketService.buyTicket(this.purchasedTicket).subscribe(res=>{
         this.toast.success('Ticket bought!');
@@ -73,7 +72,7 @@ export class CustomerHomeComponent {
   }
 
   checkFields(){
-    if(this.takeoffCountry==='' || this.takeoffCity==='' || this.landingCity==="" || this.landingCountry==='' || this.ticketNum==='' || this.date===''){
+    if(this.ticketNum===''){
       return false;
     }
     return true;

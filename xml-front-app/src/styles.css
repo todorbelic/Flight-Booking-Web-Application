@@ -5,6 +5,7 @@ body{
     background-color: #bfbfba;
     min-height: 100vh;
     overflow-y: hidden;
+    margin:0;
 }
 
 app-root {
@@ -12,3 +13,7 @@ app-root {
     height: 100%;
     width: 100%;
   }
+
+.toast-container {
+    font-family: sans-serif;
+}

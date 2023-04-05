@@ -11,7 +11,7 @@ import { TicketService } from 'app/services/ticket-service';
 })
 export class AdminHomeComponent {
   public dataSource = new MatTableDataSource<Flight>();
-  public displayedColumns = ['takeoffLoc','landingLoc','takeoffTime','landingTime'];
+  public displayedColumns = ['takeOffCity','landingCity','takeOffDate','landingDate','ticketPricePerPassenger','ticketNumber', 'delete-flight-buttons'];
   public cities: string[]=[];
   public flights:Flight[]=[];
   public selectedFlight:Flight=new Flight();
@@ -48,6 +48,20 @@ export class AdminHomeComponent {
 
     })
     
+    
+  }
+
+  deleteFlight(flight: Flight){
+    this.flightService.deleteFlight(flight.flightId).subscribe(res=>{
+      console.log('uspesno brisanje');
+      this.toast.success('Flight successfully deleted!');
+
+      this.loadFlights();
+    }
+    );
+
+
+
     
   }
 
